@@ -1,0 +1,52 @@
+RXJAVA 2.X:
+-----------
+
+RxJava implementa el patron Observer. En ese sentido existen 2 clases diferenciadas: El Observador y el
+Observado.
+
+Ejemplo 1:
+	Se puede apreciar como se genera una clase Observable y 2 Observers, estos ultimos son suscritos al Observable.
+	
+	Operaciones de la interfaz Observer:
+	La operacion onNext es invocada cada vez que una nuevo evento es publicado.
+	La operacion onCompleted es invocada cuando la secuencia de eventos asociada con un Observable ha sido completada.
+	La operacion onSubscribe es invocada cuando se suscribe un Observer.
+
+	Nota:
+		Parece que el algoritmo de rxjava sobre Observable y Observer,cuando se realiza subscribe, una vez que un 
+		Observer es suscrito se ejecutan automaticamente todas las operaciones de onSubscribe onNext y onComplete,
+		ya que en la prueba del ejemplo1 se emitio todos los println del Observer 1 y luego todas las del Observer2. 
+
+
+Ejemplo 2,3:
+	
+	En este ejemplo ya no se crea un Observer, si no un Consumidor, se implementa de io.reactivex.functions.Consumer
+	y no de java function. Ademas en este caso a diferencia de la clase Observer, solo se implementa un metodo
+	(propio de una interfaz funcional) accept(T t), ello tiene ciertas implicancias, por ejemplo que el metodo
+	onError sea implementado en otro Consumidor y el onCompleted en un Action, pero esto es opcional en el metodo
+	subscribe.
+	
+Ejemplo 4:
+	Es parecido al ejemplo 1, 2 o 3 pero se usa lambda en lugar de clases personalizadas.
+	 
+Operadores:
+	
+	Ejemplo 5:
+		Este ejemplo hace uso del metodo Observable.map, este metodo recibe una io.reactivex.functions.Function
+		esta function recibe un parametro y devuelve un valor.
+		
+		El metodo map sirve para realizar algun cambio(conversion u operacion) sobre todos los elementos 
+		del observable, devuelve un Obsevable<R>. 
+	
+
+Observaciones:
+	- El metodo just a lo maximo puede tener 9 parametros, si se quiere crear un Observable con mas parametros
+	  se puede usar el metodo fromArray(T...)
+	  
+
+
+
+
+
+ 
+ 
