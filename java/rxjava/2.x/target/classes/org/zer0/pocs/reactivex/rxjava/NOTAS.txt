@@ -31,19 +31,26 @@ Ejemplo 4:
 	 
 Operadores:
 	
-	Ejemplo 5:
+	Ejemplo 5 (MAP):
 		Este ejemplo hace uso del metodo Observable.map, este metodo recibe una io.reactivex.functions.Function
 		esta function recibe un parametro y devuelve un valor.
 		
 		El metodo map sirve para realizar algun cambio(conversion u operacion) sobre todos los elementos 
 		del observable, devuelve un Obsevable<R>. 
 	
+	Ejemplo 6 (SCAN):
+		Este ejemplo hace uso del metodo Observable.scan, este metodo recibe una BiFunction de 3 parametros,
+		siendo el tercer parametro el devuelto, los 2 primeros parametros son los operandos. 
+		El metodo scan lo que hace es tomar el primer item (emitido o en la lista) y operarlo con el 2do,
+		el resultado de esa operacion sera tomado como 1er parametro en la siguiente llamada.
+		
+	
 
 Observaciones:
 	- El metodo just a lo maximo puede tener 9 parametros, si se quiere crear un Observable con mas parametros
 	  se puede usar el metodo fromArray(T...)
 	  
-
+	
 
 
 
