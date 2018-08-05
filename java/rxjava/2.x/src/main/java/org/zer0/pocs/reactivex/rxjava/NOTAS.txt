@@ -43,6 +43,36 @@ Operadores:
 		siendo el tercer parametro el devuelto, los 2 primeros parametros son los operandos. 
 		El metodo scan lo que hace es tomar el primer item (emitido o en la lista) y operarlo con el 2do,
 		el resultado de esa operacion sera tomado como 1er parametro en la siguiente llamada.
+
+Connectable:
+
+	Ejemplo 11:
+		Como se puede evidenciar en este ejemplo, en un ConnectableObserver no se invoca al consumidor
+		(subscribe) de manera inmediata,si no mas bien se espera a la invocacion del metodo connect.
+		En este ejemplo para mostrarse los numeros se creo un Thread puesto que la emision de los 
+		numero recien empieza en el periodo de creacion del Observable.literal.
+		
+		El metodo Observable.literal crea un Observabler<Long> que emite una serie de valores cada cierto
+		periodo.
+		
+	Ejemplo 12:
+		En este ejemplo se hace uso del metodo publish de un Observable, se puede apreciar que no se 
+		necesita de un periodo ni del Thread.sleep, como en el ejemplo anterior, todas los items fueron
+		procesados cuando se invoco al metodo connect.
+
+
+Publish:
+	Ejemplo 15:
+		En este ejemplo en la clase PublishSubject pueden subscribirse Observers a demanda. A estos Observers
+		se les enviara los Items recien cuando ellos son subscritos.
+
+Tipos de Observables:
+
+	Blocking: Sincronos
+	
+	Non-Blocking: Asincronos
+
+
 		
 	
 
