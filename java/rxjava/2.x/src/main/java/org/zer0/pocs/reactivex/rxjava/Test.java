@@ -76,71 +76,10 @@ public class Test {
 	}
 	
 	
-	/* ------------------------------ Operadores ------------------------------ */
-	/* ------------------------------------------------------------------------ */
-	
-	private void ejemplo5_Map() {
-		Observable<String> observable=Observable.fromArray(eventos);
-		Observable<String> datosConvertidos=observable.map(evento->evento.toUpperCase());
-		datosConvertidos.subscribe(System.out::println);
-	}
-	
-	private void ejemplo6_Scan() {
-		Observable<String> observable=Observable.fromArray(eventos);
-		Observable<String> o=observable.scan((a,b)->{return a+b;});
-		o.subscribe(System.out::println);
-	}
-	
-	private void ejemplo7_GroupBy() {
-		Observable<Integer> observable=Observable.fromArray(numeros);
-		Observable<GroupedObservable<String, Integer>> o=observable.groupBy(
-															n->{return n%2==0?"PAR":"IMPAR";}
-														);
-		GroupedObservable<String, Integer> p=o.blockingFirst();
-		p.subscribe(System.out::println);
-	}
-	
-	private void ejemplo8_GroupBy() {
-		Integer sumaPares=0;
-		Integer sumaImpares=0;
-		Observable<Integer> observable=Observable.fromArray(numeros);
-		Observable<GroupedObservable<String, Integer>> o=observable.groupBy(
-															n->{return n%2==0?"PAR":"IMPAR";}
-														);
-		ConsumidorEjemplo8 c1=new ConsumidorEjemplo8("Par");
-		ConsumidorEjemplo8 c2=new ConsumidorEjemplo8("Impar");
-		
-		o.subscribe(
-					grupo->{
-							grupo.subscribe(c1);
-						}
-					);
-	}
-	
-	
-	private void ejemplo9_defaultIfEmpty() {
-		Observable<String> observable=Observable.empty();
-		Observable<String> o=observable.defaultIfEmpty("no hay datos!");
-		o.subscribe(System.out::println);
-		
-		Observable<String> observable2=Observable.just("").defaultIfEmpty("Sin datos");
-		observable2.subscribe(System.out::println);
-		
-		//Lanza excepcion de item null 
-		Observable<String> observable3=Observable.just((String)null).defaultIfEmpty("Sin datos");
-		observable2.subscribe(System.out::println);
-	}
-	
-	private void ejemplo10_first() {
-		Observable<Integer> observable=Observable.fromArray(numeros);
-		observable.first(3).subscribe(System.out::println);//En este caso 3 es el default si es q no se emite nada
-		
-	}
-	
 	/* ------------------------------ Connectable,Single------------------------ */
 	/* ------------------------------------------------------------------------- */
 	
-	private void ejemplo11_Connectable() {
+	private void ejemplo_Connectable_1() {
 		ConnectableObservable<Long> connectableObserver=
 									Observable.interval(200, TimeUnit.MILLISECONDS).publish();
 		connectableObserver.subscribe(System.out::println);
@@ -153,25 +92,25 @@ public class Test {
 		}
 	}
 	
-	private void ejemplo12_Connectable() {
+	private void ejemplo_Connectable_2() {
 		ConnectableObservable<String> connectableObserver=Observable.fromArray(eventos).publish();
 		connectableObserver.subscribe(System.out::println);
 		//El codigo desarrollado 3 lineas arriba no ejecutara nada hasta que se llame a connect.
 		connectableObserver.connect();
 	}
 	
-	private void ejemplo13_Single() {
+	private void ejemplo_Single_1() {
 		Single<String> single=Observable.just("Joseph Mena").singleOrError();
 		single.subscribe(System.out::println);
 	}
 	
-	private void ejemplo14_Single() {
+	private void ejemplo_Single_2() {
 		Single<String> single=Single.just("Un unico elemento.");
 		single.subscribe(System.out::println);
 	}
 	//
 	
-	private void ejemplo15_PublishSubject() {
+	private void ejemplo_PublishSubject_1() {
 		PublishSubject<String>	publishSubject=PublishSubject.create();
 		publishSubject.subscribe(
 					(param)->{
@@ -212,6 +151,6 @@ public class Test {
 		//t.ejemplo11_Connectable();
 		//t.ejemplo12_Connectable();
 		//t.ejemplo13_Single();
-		t.ejemplo15_PublishSubject();
+		//t.ejemplo15_PublishSubject();
 	}
 }
