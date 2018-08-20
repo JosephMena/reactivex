@@ -1,1 +1,3 @@
 java/rxjava/2.x/target/*
+java/rxjava/2.x/.classpath
+java/rxjava/2.x/.settings/
