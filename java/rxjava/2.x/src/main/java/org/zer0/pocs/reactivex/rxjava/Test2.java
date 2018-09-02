@@ -31,6 +31,9 @@ public class Test2 {
 		observable.subscribe(System.out::println);
 	}
 	
+	//El Observable sin cachear ejecutara el metodo create las veces que alguien se subscriba a el.
+	//En cambio, el metodo cache solo invoca al metodo create una vez y luego el resultado es cacheado
+	//para enviarselos a los subscriptores.
 	private void pruebaEmisionDeItemsCache() {
 		Observable<String> observable=Observable.create(emitter->{
 						        		System.out.println("en el while!");
@@ -39,8 +42,13 @@ public class Test2 {
 							            emitter.onComplete();
 								       
 							 		});
-		Observable<String> o=observable.cache();
-		
+		observable.subscribe(System.out::println);
+		observable.subscribe(System.out::println);
+		observable.subscribe(System.out::println);
+		Observable<String> oCache=observable.cache();
+		oCache.subscribe(System.out::println);
+		oCache.subscribe(System.out::println);
+		oCache.subscribe(System.out::println);
 	}
 	
 	

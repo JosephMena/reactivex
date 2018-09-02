@@ -72,7 +72,7 @@ public class TestOperadores {
 		observable.first(3).subscribe(System.out::println);//En este caso 3 es el default si es q no se emite nada
 	}
 	
-	//Devuelve un single<Boolean> si alguna de los elementos cumple o  no con el precidate pasado como
+	//Devuelve un single<Boolean> si alguna de los elementos cumple o  no con el predicate pasado como
 	//parametro
 	private void ejemplo_any(){
 		Observable<String> o=Observable.just("Joseph","Cesar");

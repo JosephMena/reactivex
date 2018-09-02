@@ -79,9 +79,15 @@ Tipos de Observables:
 Observaciones:
 	- El metodo just a lo maximo puede tener 9 parametros, si se quiere crear un Observable con mas parametros
 	  se puede usar el metodo fromArray(T...)
+	- Cada vez que se genera un onError o un onCompleted se debe invocar a dispose por medio del Disposable
+	  pero esta llamada se hace naturalmente por el framework, a lo cual no es necesario codearla a menos
+	  que se quiera terminar el flujo, en caso de Observable se llama a dispose() y en caso de Flowable a
+	  cancel().
 	  
 	
-
+URLs:
+	https://medium.com/@vanniktech/rxjava-2-disposable-under-the-hood-f842d2373e64
+	
 
 
 
