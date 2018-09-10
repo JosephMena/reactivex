@@ -135,25 +135,6 @@ public class TestOperadores {
 		o.subscribe(System.out::println);
 	}
 	
-	private Callable<Integer> generador(){
-		Callable<Integer> c=new Callable<Integer>() {
-			
-			@Override
-			public Integer call() throws Exception {
-				Random generator = new Random();
-		        Integer randomNumber = generator.nextInt(5);
-		        return randomNumber;
-			}
-		};
-		return c;
-	}
-	
-	private void ejemplo_fromCallable() {
-		Observable<Integer> o=Observable.fromCallable(generador());
-		o.subscribe(System.out::println);
-	}
-	
-	
 	public static void main(String[] args) {
 		TestOperadores t=new TestOperadores();
 		//t.ejemplo_Map();
@@ -168,7 +149,6 @@ public class TestOperadores {
 		//t.ejemplo_elementAt();
 		//t.ejemplo_filter();
 		//t.ejemplo_forEach();
-		t.ejemplo_fromCallable();
 	}
 	
 }
