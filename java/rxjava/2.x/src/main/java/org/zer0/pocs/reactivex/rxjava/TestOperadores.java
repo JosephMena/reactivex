@@ -5,6 +5,7 @@ import java.util.concurrent.Callable;
 
 import io.reactivex.Maybe;
 import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
 import io.reactivex.Single;
 import io.reactivex.observables.GroupedObservable;
 
@@ -135,27 +136,30 @@ public class TestOperadores {
 		o.subscribe(System.out::println);
 	}
 	
-	private Callable<Integer> generador(){
-		Callable<Integer> c=new Callable<Integer>() {
-			
-			@Override
-			public Integer call() throws Exception {
-				Random generator = new Random();
-		        Integer randomNumber = generator.nextInt(5);
-		        return randomNumber;
-			}
-		};
-		return c;
+	private void ejemploError() {
+		error();
 	}
 	
-	private void ejemplo_fromCallable() {
-		Observable<Integer> o=Observable.fromCallable(generador());
-		o.subscribe(System.out::println);
+	private Observable error() {
+		Observable<Integer> o=Observable.fromArray(numeros);
+		o.forEach(System.out::println);
+		o.switchIfEmpty(Observable.error(new Exception("error!!!!!!!!")));
+		o.forEach(System.out::println);
+		System.out.println("sal 2");
+		return o;
 	}
 	
+	private Observable error2() {
+		Observable<Integer> o=Observable.fromArray(numeros);
+		o.forEach(System.out::println);
+		
+		System.out.println("sal 3");
+		return o;
+	}
 	
 	public static void main(String[] args) {
 		TestOperadores t=new TestOperadores();
+		t.error2();
 		//t.ejemplo_Map();
 		//t.ejemplo_Scan();
 		//t.ejemplo_GroupBy();
@@ -168,7 +172,6 @@ public class TestOperadores {
 		//t.ejemplo_elementAt();
 		//t.ejemplo_filter();
 		//t.ejemplo_forEach();
-		t.ejemplo_fromCallable();
 	}
 	
 }
