@@ -1,0 +1,50 @@
+Scheluders:
+----------
+	
+	Schedulers.newThread:
+	--------------------
+		Simplemente inicia un nuevo hilo cada vez que es solicitado via subscribeOn o observeOn. Casi nunca es una
+		buena eleccion, no solo debido a la latencia debido al inicio de un nuevo hilo si no tambien por que el hilo
+		no es reusado.
+		
+		Quizas pueda ser usado cuando la tarea a ejecutarse es de grano grueso, cuando es una tarea compleja y va a 
+		tomar mucho tiempo, y ademas el numero de tareas similares es bajo.
+	
+	
+	Schedulers.immediate:
+	--------------------
+		
+	
+	
+	Schedulers.trampoline:
+	---------------------
+	
+	
+	Schedulers.from:
+	---------------
+	
+	
+	Schedulers.io:
+	-------------
+		Es similar a newThread excepto por el hecho de que los hilos iniciados son reclicados y puede ser reutilizados 
+		para procesar futuros request. Esta implementacion trabaja similarmente a ThreadPoolExecutor de 
+		java.util.concurrent con un ilimitado pool de hilos. Cada vez que un nuevo worker es solicitado, un nuevo hilo 
+		es iniciado o un hilo idle es reusado. Hay que tener en consideracion que este scheluder puede instanciar un 
+		numero grande de hilos dependiendo de la concurrencia de la aplicacion.
+		
+	
+	Schedulers.computation:
+	----------------------
+	
+		Este scheluder por defecto limita el numero de hilos que corren en paralelo al numero de procesadores de la pc 
+		o servidor. Por lo tanto se usara este scheluder cuando 
+	
+	
+	Schedulers.test:
+	
+	
+	
+	Default Schedulers:
+		
+		
+	

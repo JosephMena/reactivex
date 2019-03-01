@@ -1,9 +1,9 @@
-package org.zer0.pocs.reactivex.rxjava;
+package org.zer0.pocs.reactivex.rxjava.schedulers;
 
 import io.reactivex.Observable;
 import io.reactivex.schedulers.Schedulers;
 
-public class HiloSingleObservable implements Runnable{
+public class HiloNewThreadObservable implements Runnable{
 
 	@Override
 	public void run() {
@@ -11,7 +11,7 @@ public class HiloSingleObservable implements Runnable{
 				Observable.<String>just("este","es","un","mensaje","en","varias","cadenas.");
 		observable.
 		doOnNext(t->System.out.println("Thead name:"+Thread.currentThread().getName())).
-		subscribeOn(Schedulers.single()).
+		subscribeOn(Schedulers.newThread()).
 		subscribe(System.out::println);
 		
 	}
