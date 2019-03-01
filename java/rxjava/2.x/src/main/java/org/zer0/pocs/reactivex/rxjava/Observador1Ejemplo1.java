@@ -12,15 +12,15 @@ public class Observador1Ejemplo1 implements Observer<String> {
 
 	@Override
 	public void onError(Throwable arg0) {
-		// TODO Auto-generated method stub
-		
+		System.out.println("mensaje recibido:"+arg0.getMessage());
+		throw new RuntimeException("segundo mensaje");
 	}
 
 	@Override
 	public void onNext(String dato) {
 		System.out.println("Observador1Ejemplo1 operando sobre:"+dato);
 	}
-
+	
 	@Override
 	public void onSubscribe(Disposable arg0) {
 		System.out.println("Observador1Ejemplo1 suscrito");

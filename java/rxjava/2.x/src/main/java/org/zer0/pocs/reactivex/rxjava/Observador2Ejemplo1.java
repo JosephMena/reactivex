@@ -12,8 +12,7 @@ public class Observador2Ejemplo1 implements Observer<String>{
 
 	@Override
 	public void onError(Throwable arg0) {
-		// TODO Auto-generated method stub
-		
+		System.out.println("mensaje 2:"+arg0.getMessage());
 	}
 
 	@Override

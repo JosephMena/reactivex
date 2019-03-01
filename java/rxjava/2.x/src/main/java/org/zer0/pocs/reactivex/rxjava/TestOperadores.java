@@ -5,6 +5,7 @@ import java.util.concurrent.Callable;
 
 import io.reactivex.Maybe;
 import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
 import io.reactivex.Single;
 import io.reactivex.observables.GroupedObservable;
 
@@ -72,7 +73,7 @@ public class TestOperadores {
 		observable.first(3).subscribe(System.out::println);//En este caso 3 es el default si es q no se emite nada
 	}
 	
-	//Devuelve un single<Boolean> si alguna de los elementos cumple o  no con el precidate pasado como
+	//Devuelve un single<Boolean> si alguna de los elementos cumple o  no con el predicate pasado como
 	//parametro
 	private void ejemplo_any(){
 		Observable<String> o=Observable.just("Joseph","Cesar");
@@ -135,8 +136,30 @@ public class TestOperadores {
 		o.subscribe(System.out::println);
 	}
 	
+	private void ejemploError() {
+		error();
+	}
+	
+	private Observable error() {
+		Observable<Integer> o=Observable.fromArray(numeros);
+		o.forEach(System.out::println);
+		o.switchIfEmpty(Observable.error(new Exception("error!!!!!!!!")));
+		o.forEach(System.out::println);
+		System.out.println("sal 2");
+		return o;
+	}
+	
+	private Observable error2() {
+		Observable<Integer> o=Observable.fromArray(numeros);
+		o.forEach(System.out::println);
+		
+		System.out.println("sal 3");
+		return o;
+	}
+	
 	public static void main(String[] args) {
 		TestOperadores t=new TestOperadores();
+		t.error2();
 		//t.ejemplo_Map();
 		//t.ejemplo_Scan();
 		//t.ejemplo_GroupBy();
