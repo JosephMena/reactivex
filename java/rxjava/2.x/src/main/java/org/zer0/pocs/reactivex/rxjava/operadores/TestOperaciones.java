@@ -1,7 +1,9 @@
-package org.zer0.pocs.reactivex.rxjava;
+package org.zer0.pocs.reactivex.rxjava.operadores;
 
 import java.util.Random;
 import java.util.concurrent.Callable;
+
+import org.zer0.pocs.reactivex.rxjava.ConsumidorEjemplo8;
 
 import io.reactivex.Maybe;
 import io.reactivex.Observable;
@@ -9,7 +11,7 @@ import io.reactivex.ObservableSource;
 import io.reactivex.Single;
 import io.reactivex.observables.GroupedObservable;
 
-public class TestOperadores {
+public class TestOperaciones {
 
 	private static final String[] eventos= {"event 1","event 2","event 3","event 4","event 5","event 6","event 7","event 8",
 			"event 9","event 10","event 11","event 12","event 13","event 14","event 15","event 16"};
@@ -158,7 +160,7 @@ public class TestOperadores {
 	}
 	
 	public static void main(String[] args) {
-		TestOperadores t=new TestOperadores();
+		TestOperaciones t=new TestOperaciones();
 		t.error2();
 		//t.ejemplo_Map();
 		//t.ejemplo_Scan();

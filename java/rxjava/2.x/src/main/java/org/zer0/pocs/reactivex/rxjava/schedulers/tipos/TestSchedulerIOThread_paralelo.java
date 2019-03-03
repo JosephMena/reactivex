@@ -1,4 +1,4 @@
-package org.zer0.pocs.reactivex.rxjava.schedulers;
+package org.zer0.pocs.reactivex.rxjava.schedulers.tipos;
 
 public class TestSchedulerIOThread_paralelo {
 

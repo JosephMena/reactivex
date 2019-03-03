@@ -1,14 +1,14 @@
-package org.zer0.pocs.reactivex.rxjava.schedulers;
+package org.zer0.pocs.reactivex.rxjava.schedulers.tipos;
 
 import io.reactivex.Observable;
 import io.reactivex.schedulers.Schedulers;
 
-public class TestSchedulerSingleThread_secuencial {
+public class TestSchedulerNewThread_secuencial {
 
-	// En este ejemplo se puede apreciar que ante 3 invocaciones solo se crea 1 hilo, el cual
-	// es compartido por los distintas tareas.
+	//En este ejemplo se puede apreciar que ante 3 invocaciones se crean 3 hilos distintos, aunque
+	//estas invocaciones sean secuencialmente.
 	public static void main(String[] args) throws Exception{
-		TestSchedulerSingleThread_secuencial test = new TestSchedulerSingleThread_secuencial();
+		TestSchedulerNewThread_secuencial test = new TestSchedulerNewThread_secuencial();
 		test.testScheduler();
 		test.testScheduler();
 		test.testScheduler();
@@ -19,7 +19,7 @@ public class TestSchedulerSingleThread_secuencial {
 			Observable.<String>just("este","es","un","mensaje","en","varias","cadenas.");
 		observable.
 		doOnNext(t->System.out.println("Thead name:"+Thread.currentThread().getName())).
-		subscribeOn(Schedulers.single()).
+		subscribeOn(Schedulers.newThread()).
 		subscribe(System.out::println);
 		Thread.sleep(3000);
 	}
