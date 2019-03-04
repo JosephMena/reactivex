@@ -30,32 +30,11 @@ public class TestOperaciones {
 		o.subscribe(System.out::println);
 	}
 	
-	private void ejemplo_GroupBy1() {
-		Observable<Integer> observable=Observable.fromArray(numeros);
-		Observable<GroupedObservable<String, Integer>> o=observable.groupBy(
-															n->{return n%2==0?"PAR":"IMPAR";}
-														);
-		GroupedObservable<String, Integer> p=o.blockingFirst();
-		p.subscribe(System.out::println);
+	private void ejemplo_flatMap() {
+		Observable<String> observable=Observable.fromArray(eventos);
+		observable.flatMap(v-> Observable.just(v))
+			.subscribe(System.out::println);
 	}
-	
-	private void ejemplo_GroupBy2() {
-		Integer sumaPares=0;
-		Integer sumaImpares=0;
-		Observable<Integer> observable=Observable.fromArray(numeros);
-		Observable<GroupedObservable<String, Integer>> o=observable.groupBy(
-															n->{return n%2==0?"PAR":"IMPAR";}
-														);
-		ConsumidorEjemplo8 c1=new ConsumidorEjemplo8("Par");
-		ConsumidorEjemplo8 c2=new ConsumidorEjemplo8("Impar");
-		
-		o.subscribe(
-					grupo->{
-							grupo.subscribe(c1);
-						}
-					);
-	}
-	
 	
 	private void ejemplo_defaultIfEmpty() {
 		Observable<String> observable=Observable.empty();
@@ -138,33 +117,11 @@ public class TestOperaciones {
 		o.subscribe(System.out::println);
 	}
 	
-	private void ejemploError() {
-		error();
-	}
-	
-	private Observable error() {
-		Observable<Integer> o=Observable.fromArray(numeros);
-		o.forEach(System.out::println);
-		o.switchIfEmpty(Observable.error(new Exception("error!!!!!!!!")));
-		o.forEach(System.out::println);
-		System.out.println("sal 2");
-		return o;
-	}
-	
-	private Observable error2() {
-		Observable<Integer> o=Observable.fromArray(numeros);
-		o.forEach(System.out::println);
-		
-		System.out.println("sal 3");
-		return o;
-	}
-	
 	public static void main(String[] args) {
 		TestOperaciones t=new TestOperaciones();
-		t.error2();
+		t.ejemplo_flatMap();
 		//t.ejemplo_Map();
 		//t.ejemplo_Scan();
-		//t.ejemplo_GroupBy();
 		//t.ejemplo_defaultIfEmpty();
 		//t.ejemplo_first();
 		//t.ejemplo_any();

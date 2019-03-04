@@ -21,4 +21,6 @@ public class TestOtros {
 		t.ejemplo4_Lambda();
 	}
 	
+	
+	
 }

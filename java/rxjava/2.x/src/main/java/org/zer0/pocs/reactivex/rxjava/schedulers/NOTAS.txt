@@ -1,0 +1,12 @@
+Scheluders:
+----------
+	
+	Por defecto un Observable corre sobre el hilo actual, es decir si no se usa la operacion
+	subscribeOn las operaciones del observable corren sobre el hilo que se esta ejecutando 
+	en ese momento. Para el caso de una aplicacion java comun seria el hilo main. (ver ejemplo
+	testObservableDefault)
+	
+	
+	
+	
+	
